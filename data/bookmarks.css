@@ -1,0 +1,32 @@
+#result [name="title"] {
+	margin-left: 10px;
+}
+
+#result [name="icon"] {
+  width: 16px;
+  height: 16px;
+}
+
+#result li{
+	cursor: pointer;
+}
+
+#result li:hover {
+	background-color: lightblue;
+}
+
+/*
+ * ¤dialog
+ */
+
+#dlgedit .modal-dialog {
+	width: 450px;
+}
+
+#dlgedit-form .col1 { 
+	width: 50px;
+}
+
+#dlgedit-form .col2 {
+	width: 300px;
+}

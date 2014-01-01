@@ -1,0 +1,9 @@
+{
+  "name": "bookmarks",
+  "fullName": "Bookmarks",
+  "id": "bookmarks-gutenye",
+  "description": "A bookmarks manager",
+  "author": "Guten",
+  "license": "MIT",
+  "version": "0.1"
+}
