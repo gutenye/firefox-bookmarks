@@ -2,8 +2,10 @@
   "name": "bookmarks",
   "fullName": "Bookmarks",
   "id": "bookmarks-gutenye",
-  "description": "A bookmarks manager",
+  "description": "Browse bookmarks by tag",
   "author": "Guten",
   "license": "MIT",
-  "version": "0.1"
+  "version": "0.1",
+	"preferences": [
+		{ "name": "tag_alias", "type": "string", "title": "Tag Aliases", "value": "linux,li learn,l" } ] 
 }

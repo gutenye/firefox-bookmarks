@@ -7,11 +7,19 @@ windows = require("sdk/windows").browserWindows
 window = require("sdk/window/utils")
 PageMod = require("sdk/page-mod").PageMod
 bookmarks = require("sdk/places/bookmarks")
-promise = require("sdk/core/promise")
+prefs = require("sdk/simple-prefs").prefs
 
 # lib
 pd = -> console.log.apply(console, arguments) 
 set2array = (set) -> x for x in set
+
+TAG_ALIAS = {}
+prefs["tag_alias"].trim().split(/[ ]+/).forEach (text) ->
+  [origin, aliases...] = text.split(",")
+  aliases.forEach (v) ->
+    TAG_ALIAS[v] = origin
+
+apply_tag_alias = (tags) -> (TAG_ALIAS[v] ? v for v in tags)
 
 Widget
   id: "bookmarks"
@@ -36,7 +44,8 @@ PageMod
     
     port.on "search", (text) ->
       tags = text.trim().split(/[ ]+/)
-      
+      tags = apply_tag_alias(tags)
+
       bookmarks.search({tags: tags}, {sort: "visitCount", descending: true}).on "end", (entries) ->
         entries.forEach (v) ->
           v["icon"] = "chrome://mozapps/skin/places/defaultFavicon.png"
