@@ -25,7 +25,7 @@ $("#search")
       false
 
 $("#result").on "click", "li", (e) ->
-  port.emit "click-entry", $(this).data("url")
+  port.emit "click-entry", A.entries[$(this).index()]["url"]
 
 #
 # ¤data
