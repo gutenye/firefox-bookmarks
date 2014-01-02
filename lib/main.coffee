@@ -73,4 +73,4 @@ PageMod
       bookmarks.save bookmarks.remove(ENTRIES[index])
 
 # ¤test
-tabs.open data.url("bookmarks.html")
+#tabs.open data.url("bookmarks.html")
