@@ -8,10 +8,11 @@ window = require("sdk/window/utils")
 PageMod = require("sdk/page-mod").PageMod
 bookmarks = require("sdk/places/bookmarks")
 prefs = require("sdk/simple-prefs").prefs
+system = require("sdk/system")
 
 # lib
 pd = -> console.log.apply(console, arguments) 
-set2array = (set) -> x for x in set
+set2array = (set) -> `[x for (x of set)]`
 
 TAG_ALIAS = {}
 prefs["tag_alias"].trim().split(/[ ]+/).forEach (text) ->
@@ -19,7 +20,8 @@ prefs["tag_alias"].trim().split(/[ ]+/).forEach (text) ->
   aliases.forEach (v) ->
     TAG_ALIAS[v] = origin
 
-apply_tag_alias = (tags) -> (TAG_ALIAS[v] ? v for v in tags)
+apply_tag_alias = (tags) -> 
+  (TAG_ALIAS[v] ? v for v in tags)
 
 Widget
   id: "bookmarks"
@@ -47,9 +49,10 @@ PageMod
       tags = apply_tag_alias(tags)
 
       bookmarks.search({tags: tags}, {sort: "visitCount", descending: true}).on "end", (entries) ->
-        entries.forEach (v) ->
+        entries.forEach (v, i) ->
           v["icon"] = "chrome://mozapps/skin/places/defaultFavicon.png"
           v["tags"] = set2array(v["tags"])
+          v["idx"] = i
         ENTRIES = entries
         port.emit "update-result", entries
         
@@ -72,5 +75,6 @@ PageMod
     port.on "delete-entry", (index) ->
       bookmarks.save bookmarks.remove(ENTRIES[index])
 
-# ¤test
-#tabs.open data.url("bookmarks.html")
+
+if system.env["DEBUG"]
+  tabs.open data.url("bookmarks.html")

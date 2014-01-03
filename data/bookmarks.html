@@ -13,8 +13,8 @@
     </div>
     <div>
       <ul id="result" class="list-unstyled">
-        <li rv-each-entry="A.entries" contextmenu="menu">
-        <img name="icon" rv-src="entry.icon"><span name="title">{entry.title}</span>
+        <li rv-each-entry="A.entries" rv-data-idx="entry.idx" rv-name="entry.idx" contextmenu="menu">
+          <img name="icon" rv-src="entry.icon"><span name="title">{entry.title}</span>
         </li>
       </ul>
     </div>

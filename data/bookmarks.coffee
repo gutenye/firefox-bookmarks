@@ -6,11 +6,12 @@ rivets.formatters.array =
   read: (ary) -> ary.join(" ")
   publish: (text) -> text.trim().split(/[ ]+/)
 
+# model
 A =
-  a: []
   entries: []             # all entries
-  edit_entry: {tags: []}  # current edit entry, from entries
-  i: 0                    # current edit entry index
+  i: 0                    # selected entry index: for this-side entries
+  idx: 0                  # selected entry idx: for other-side entries
+  edit_entry: {tags: []}  # selected entry: from entries
 
 rivets.bind $("body"), {A: A}
 
@@ -44,14 +45,15 @@ port.on "update-icon", (entry) ->
 #
 
 $("#result").on "contextmenu", "li", (e) ->
-  A.i = $(this).index()
+  A.i = $(e.target).index()
+  A.idx = e.target.dataset["idx"]     # BUG $(e.target).data select the deleted one.
   A.edit_entry = A.entries[A.i]
 
 $("#menu-edit").on "click", (e) ->
   $("#dlgedit").modal "show"
 
 $("#menu-delete").on "click", (e) ->
-  port.emit "delete-entry", A.i
+  port.emit "delete-entry", A.idx
   A.entries.splice A.i, 1
 
 #
@@ -62,7 +64,7 @@ $("#dlgedit").on "shown.bs.modal", (e) ->
   $("#input-title").focus()
 
 $("#dlgedit-save").on "click", (e) ->
-  port.emit "save-entry", A.i, A.edit_entry
+  port.emit "save-entry", A.idx, A.edit_entry
   $("#dlgedit").modal "hide" 
 
 $("#dlgedit-form").on "keydown", "input", (e) ->
@@ -72,6 +74,3 @@ $("#dlgedit-form").on "keydown", "input", (e) ->
 
 $(document).ready (e) ->
   $("#search").focus()
-
-# ¤test
-# $("#search").val("a").trigger "input" 
