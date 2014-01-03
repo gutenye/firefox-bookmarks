@@ -6,6 +6,9 @@ rivets.formatters.array =
   read: (ary) -> ary.join(" ")
   publish: (text) -> text.trim().split(/[ ]+/)
 
+rivets.formatters.string = (value) ->
+  value.toString()
+
 # model
 A =
   entries: []             # all entries
@@ -45,8 +48,8 @@ port.on "update-icon", (entry) ->
 #
 
 $("#result").on "contextmenu", "li", (e) ->
-  A.i = $(e.target).index()
-  A.idx = e.target.dataset["idx"]     # BUG $(e.target).data select the deleted one.
+  A.i = $(e.currentTarget).index()
+  A.idx = parseInt(e.currentTarget.dataset["idx"])     # BUG $(e.target).data select the deleted one.
   A.edit_entry = A.entries[A.i]
 
 $("#menu-edit").on "click", (e) ->

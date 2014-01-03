@@ -10,6 +10,7 @@ bookmarks = require("sdk/places/bookmarks")
 prefs = require("sdk/simple-prefs").prefs
 system = require("sdk/system")
 
+
 # lib
 pd = -> console.log.apply(console, arguments) 
 set2array = (set) -> `[x for (x of set)]`
