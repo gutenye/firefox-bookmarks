@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bookmarks</title>
+    <title>Guten Bookmarks</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="vendor/bootstrap.min.css" rel="stylesheet">
@@ -13,7 +13,7 @@
     </div>
     <div>
       <ul id="result" class="list-unstyled">
-        <li rv-each-entry="A.entries" rv-data-idx="entry.idx | string" rv-name="entry.idx | string" contextmenu="menu">
+        <li rv-each-entry="App.entries" rv-data-idx="entry.idx | string" rv-name="entry.idx | string" contextmenu="menu">
           <img name="icon" rv-src="entry.icon"><span name="title">{entry.title}</span>
         </li>
       </ul>
@@ -24,9 +24,9 @@
         <div class="modal-content">
           <div class="modal-body">
             <ul class="list-unstyled" id="dlgedit-form">
-              <li><label class="col1">URL:</label><input class="col2" type="text" name="url" id="input-url" autofocus rv-value="A.edit_entry.url"></li>
-              <li><label class="col1">Title:</label><input class="col2" type="text" name="title" id="input-title" rv-value="A.edit_entry.title"></li>
-              <li><label class="col1">Tags:</label><input class="col2" type="text" name="tags" id="input-tags" rv-value="A.edit_entry.tags | array"></li>
+              <li><label class="col1">URL:</label><input class="col2" type="text" name="url" id="input-url" autofocus rv-value="App.edit_entry.url"></li>
+              <li><label class="col1">Title:</label><input class="col2" type="text" name="title" id="input-title" rv-value="App.edit_entry.title"></li>
+              <li><label class="col1">Tags:</label><input class="col2" type="text" name="tags" id="input-tags" rv-value="App.edit_entry.tags | array"></li>
             </ul>
           </div>
           <div class="modal-footer">

@@ -1,6 +1,6 @@
 {
-  "name": "bookmarks",
-  "fullName": "Guten Bookmarks",
+  "name": "guten-bookmarks",
+  "title": "Guten Bookmarks",
   "id": "bookmarks-gutenye",
   "description": "Browse bookmarks by tag",
   "author": "Guten",

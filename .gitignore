@@ -1,4 +1,2 @@
 /bower_components
 *.xpi
-/data/*.js
-/lib/*.js
