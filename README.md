@@ -1,3 +1,4 @@
+firefox extension, read data, tag from firefox bookmarks database, you can search by tag.
 
 ### Setup Development
 
